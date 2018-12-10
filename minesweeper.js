@@ -3,7 +3,7 @@ document.addEventListener('click', checkForWin);
 document.addEventListener('contextmenu', checkForWin);
 
 // Define your `board` object here!
-var board = {
+/*var board = {
   cells: [
     {row: 0, col: 0, isMine: false, isMarked: false, hidden: true},
     {row: 1, col: 0, isMine: false, isMarked: false, hidden: true},
@@ -15,8 +15,41 @@ var board = {
     {row: 1, col: 2, isMine: true, isMarked: false, hidden: true},
     {row: 2, col: 2, isMine: false, isMarked: false, hidden: true},
   ]
+};*/
+
+function createBoard(row, col) {
+  var board = {};
+  board.cells = makeCells(row, col);
+  //createMines(row, col);
+  return board;
 };
 
+createBoard(3, 4)
+
+function makeCells(rows, columns) {
+  var cellIndex = 0;
+  let cells = []
+  for (i = 0; i < rows; i++) {
+    for (j = 0; j < columns; j++) {
+      cells[cellIndex] = {row: i, col: j, isMarked: false, hidden: true}
+      cells[cellIndex].isMine = createMines();
+      cellIndex++;
+    }
+  }
+  return cells
+};
+
+
+function createMines () {
+  randomise = Math.floor((Math.random() * 10) + 1)
+    if (randomise < 6) {
+      return true;
+    } else {
+      return false;
+  }
+};
+
+var board = createBoard(3, 3);
 
 
 function startGame () {
@@ -70,32 +103,10 @@ function countSurroundingMines (cell) {
   return counter;
 } 
 
-function createBoard(row, col, isMine, isMarked, hidden) {
-  let board = {
-    cells: []
-    }
-  };
 
-function makeCells(rows, columns) {
-  var cellIndex = 0;
-  for (i = 0; i < rows; i++) {
-    for (j = 0; j < columns; j++) {
-      board.cells[cellIndex] = {row: i, col: j, isMarked: false, hidden: true}
-      cellIndex++;
-      }
-    }
-  };
 
-function createMines (rows, cols) {
-  cellCount = rows * cols;
-  randomise = Math.floor((Math.random() * 10) + 1)
-  for (i = 0; i < rows * cols; i++) {
-    if (randomise < 6) {
-      board.cells[i].isMine = true;
-    } else {
-      board.cells[i].isMine = false;
-    }
-  }
-};
+
+
+
 
 
