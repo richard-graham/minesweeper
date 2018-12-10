@@ -68,7 +68,34 @@ function countSurroundingMines (cell) {
   }
   //console.log(counter);
   return counter;
-}
+} 
 
+function createBoard(row, col, isMine, isMarked, hidden) {
+  let board = {
+    cells: []
+    }
+  };
+
+function makeCells(rows, columns) {
+  var cellIndex = 0;
+  for (i = 0; i < rows; i++) {
+    for (j = 0; j < columns; j++) {
+      board.cells[cellIndex] = {row: i, col: j, isMarked: false, hidden: true}
+      cellIndex++;
+      }
+    }
+  };
+
+function createMines (rows, cols) {
+  cellCount = rows * cols;
+  randomise = Math.floor((Math.random() * 10) + 1)
+  for (i = 0; i < rows * cols; i++) {
+    if (randomise < 6) {
+      board.cells[i].isMine = true;
+    } else {
+      board.cells[i].isMine = false;
+    }
+  }
+};
 
 
