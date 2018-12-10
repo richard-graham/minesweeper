@@ -70,3 +70,5 @@ function countSurroundingMines (cell) {
   return counter;
 }
 
+
+
